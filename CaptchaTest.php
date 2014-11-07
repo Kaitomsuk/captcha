@@ -1,6 +1,9 @@
 <?php
 
 class Captcha {
+	const NUM_AND_STR_PATTERN = 1;
+	const STR_AND_NUM_PATTERN = 2;
+
 	var $numstr =  array(
 		'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'
 	);
@@ -10,9 +13,6 @@ class Captcha {
 		2 => '*',
 		3 => '-'
 	);
-
-	const NUM_AND_STR_PATTERN = 1;
-	const STR_AND_NUM_PATTERN = 2;
 
 	private function num2str($num) {
 		return $this->numstr[$num];

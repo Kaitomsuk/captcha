@@ -7,6 +7,7 @@ class Captcha {
 
 	const PLUS_OPERATOR = 1;
 	const MULTIPLY_OPERATOR = 2;
+	const MINUS_OPERATOR = 3;
 
 	private function num2str($num) {
 		return $this->numstr[$num];
@@ -48,6 +49,9 @@ class Captcha {
 			
 			case self::MULTIPLY_OPERATOR:
 				return "*";
+
+			case self::MINUS_OPERATOR:
+				return "-";
 		}
 	}
 
@@ -84,10 +88,10 @@ class CaptchaTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals("*", $captcha->getOperator());	
 	}
 
-	// function testOperatorBe3WhenInputIs1131() {
-	// 	$captcha = new Captcha(1,1,3,5);
-	// 	$this->assertEquals("3", $captcha->getOperator());	
-	// }
+	function testOperatorBe3WhenInputIs1131() {
+		$captcha = new Captcha(1,1,3,5);
+		$this->assertEquals("-", $captcha->getOperator());	
+	}
 
 	function testPatternBe1WhenInputIs1111() {
 		$captcha = new Captcha(1,1,1,1);

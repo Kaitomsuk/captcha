@@ -77,6 +77,11 @@ class CaptchaTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals("One", $captcha->getRightOperand());
 	}
 
+	function testPatternBe2WhenInputIs2111() {
+		$captcha = new Captcha(2,1,1,1);
+		$this->assertEquals("One", $captcha->getLeftOperand());
+	}
+
 
 
 

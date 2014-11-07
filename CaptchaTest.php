@@ -13,14 +13,22 @@ class Captcha {
 		$this->leftOperand = $leftOperand;
 		$this->rightOperand = $rightOperand;
 		$this->operator = $operator;
+		$this->pattern = $pattern;
 	}
 
 	public function getLeftOperand() {
-		return $this->leftOperand;
+		if ($this->pattern == 2) {
+			$leftOperand = $this->num2str($this->leftOperand);
+		}
+
+		else {
+			$leftOperand = $this->leftOperand;
+		}
+		return $leftOperand;
 	}
 
 	public function getRightOperand() {
-		if ($this->operator == 1) {
+		if ($this->pattern == 1) {
 			$rightOperand = $this->num2str($this->rightOperand);
 		}
 

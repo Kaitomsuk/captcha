@@ -11,7 +11,8 @@ class CaptchaService
 
 	function getCaptcha()
 	{
-		return new Captcha( 1, $this->randomizer->getRandomOperand(),1,1 );
+		$randomizer = $this->randomizer;
+		return new Captcha( 1, $randomizer->getRandomOperand(),1,$randomizer->getRandomOperand());
 	}
 }
 
@@ -23,11 +24,30 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 		$stubRandomizer = $this->getMock('Randomizer');
 
 		$stubRandomizer
-			->expects($this->once())
+			->expects($this->exactly(2))
 			->method('getRandomOperand')
             ->willReturn(1);
 
 		$captchaService->setRandomizer( $stubRandomizer );
 		$this->assertEquals("1" , $captchaService->getCaptcha()->getLeftOperand() );
 	}
+
+
+	public function testGetCaptchaRightOperandShouldBeTwo()
+	{
+		$captchaService = new CaptchaService();
+		$stubRandomizer = $this->getMock('Randomizer');
+
+		$stubRandomizer
+			->expects($this->exactly(2))
+			->method('getRandomOperand')
+            ->willReturn(2);
+
+		$captchaService->setRandomizer( $stubRandomizer );
+		$this->assertEquals("Two" , $captchaService->getCaptcha()->getRightOperand() );
+	}
+
+
+
+
 }

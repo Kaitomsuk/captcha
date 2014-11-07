@@ -24,24 +24,16 @@ class Captcha {
 
 	public function getLeftOperand() {
 		if ($this->pattern == self::STR_AND_NUM_PATTERN) {
-			$leftOperand = $this->num2str($this->leftOperand);
+			return $this->num2str($this->leftOperand);
 		}
-
-		else {
-			$leftOperand = $this->leftOperand;
-		}
-		return $leftOperand;
+		return $this->leftOperand;
 	}
 
 	public function getRightOperand() {
 		if ($this->pattern == self::NUM_AND_STR_PATTERN) {
-			$rightOperand = $this->num2str($this->rightOperand);
+			return $this->num2str($this->rightOperand);
 		}
-
-		else {
-			$rightOperand = $this->rightOperand;
-		}
-		return $rightOperand;
+		return $this->rightOperand;
 	}
 
 	public function getOperator(){

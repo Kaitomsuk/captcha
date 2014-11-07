@@ -5,9 +5,12 @@ class Captcha {
 		'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'
 	);
 
-	const PLUS_OPERATOR = 1;
-	const MULTIPLY_OPERATOR = 2;
-	const MINUS_OPERATOR = 3;
+	var $arr_operator = array(
+		1 => '+',
+		2 => '*',
+		3 => '-'
+	);
+
 	const NUM_AND_STR_PATTERN = 1;
 	const STR_AND_NUM_PATTERN = 2;
 
@@ -37,16 +40,7 @@ class Captcha {
 	}
 
 	public function getOperator(){
-		switch ($this->operator) {
-			case self::PLUS_OPERATOR:
-				return "+";
-			
-			case self::MULTIPLY_OPERATOR:
-				return "*";
-
-			case self::MINUS_OPERATOR:
-				return "-";
-		}
+		return $this->arr_operator[ $this->operator ];
 	}
 
 }

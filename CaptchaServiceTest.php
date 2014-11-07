@@ -14,7 +14,8 @@ class CaptchaService
 		$leftOperand = $this->randomizer->getRandomOperand();
 		$rightOperand = $this->randomizer->getRandomOperand();
 		$operator = $this->randomizer->getRandomOperator();
-		return new Captcha( 1, $leftOperand, $operator, $rightOperand);
+		$pattern = $this->randomizer->getRandomPattern();
+		return new Captcha( $pattern, $leftOperand, $operator, $rightOperand);
 	}
 }
 
@@ -28,6 +29,10 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 	public function testGetCaptchaLeftOperandShouldBe1()
 	{		
 		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer
+			->expects($this->once())
+			->method('getRandomPattern')
+            ->willReturn(1);
 		$stubRandomizer
 			->expects($this->exactly(2))
 			->method('getRandomOperand')
@@ -43,6 +48,10 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 	{
 		$stubRandomizer = $this->getMock('Randomizer');
 		$stubRandomizer
+			->expects($this->once())
+			->method('getRandomPattern')
+            ->willReturn(1);
+		$stubRandomizer
 			->expects($this->exactly(2))
 			->method('getRandomOperand')
             ->willReturn(2);
@@ -53,7 +62,7 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("Two" , $rightOperand);
 	}
 
-		public function testGetCaptchaOperaterShouldBePlus()
+	public function testGetCaptchaOperaterShouldBePlus()
 	{
 		$stubRandomizer = $this->getMock('Randomizer');
 		$stubRandomizer
@@ -65,5 +74,22 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 		$operator = $this->captchaService->getCaptcha()->getOperator();
 		
 		$this->assertEquals("+" , $operator);
+	}
+
+	public function testGetCaptchaPattern1LeftOperandShouldBe1()
+	{
+		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer
+			->expects($this->once())
+			->method('getRandomPattern')
+            ->willReturn(1);
+        $stubRandomizer
+			->method('getRandomOperand')
+            ->willReturn(1);
+		$this->captchaService->setRandomizer( $stubRandomizer );
+		
+		$leftOperand = $this->captchaService->getCaptcha()->getLeftOperand();
+		
+		$this->assertEquals("1" , $leftOperand);
 	}
 }

@@ -13,7 +13,8 @@ class CaptchaService
 	{
 		$leftOperand = $this->randomizer->getRandomOperand();
 		$rightOperand = $this->randomizer->getRandomOperand();
-		return new Captcha( 1, $leftOperand,1,$rightOperand);
+		$operator = $this->randomizer->getRandomOperator();
+		return new Captcha( 1, $leftOperand, $operator, $rightOperand);
 	}
 }
 
@@ -50,5 +51,19 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 		$rightOperand = $this->captchaService->getCaptcha()->getRightOperand();
 		
 		$this->assertEquals("Two" , $rightOperand);
+	}
+
+		public function testGetCaptchaOperaterShouldBePlus()
+	{
+		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer
+			->expects($this->once())
+			->method('getRandomOperator')
+            ->willReturn(1);
+		$this->captchaService->setRandomizer( $stubRandomizer );
+		
+		$operator = $this->captchaService->getCaptcha()->getOperator();
+		
+		$this->assertEquals("+" , $operator);
 	}
 }

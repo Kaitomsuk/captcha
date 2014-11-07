@@ -1,0 +1,10 @@
+{
+    "name": "root/captcha",
+    "authors": [
+        {
+            "name": "John Smith",
+            "email": "john@example.com"
+        }
+    ],
+    "require": {}
+}

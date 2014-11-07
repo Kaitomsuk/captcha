@@ -2,9 +2,11 @@
     "name": "root/captcha",
     "authors": [
         {
-            "name": "John Smith",
-            "email": "john@example.com"
+            "name": "Nat",
+            "email": "kaitomsuk@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+    	"phpunit/phpunit" : "~4.3"
+    }
 }

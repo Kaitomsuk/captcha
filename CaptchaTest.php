@@ -8,6 +8,8 @@ class Captcha {
 	const PLUS_OPERATOR = 1;
 	const MULTIPLY_OPERATOR = 2;
 	const MINUS_OPERATOR = 3;
+	const NUM_AND_STR_PATTERN = 1;
+	const STR_AND_NUM_PATTERN = 2;
 
 	private function num2str($num) {
 		return $this->numstr[$num];
@@ -21,7 +23,7 @@ class Captcha {
 	}
 
 	public function getLeftOperand() {
-		if ($this->pattern == 2) {
+		if ($this->pattern == self::STR_AND_NUM_PATTERN) {
 			$leftOperand = $this->num2str($this->leftOperand);
 		}
 
@@ -32,7 +34,7 @@ class Captcha {
 	}
 
 	public function getRightOperand() {
-		if ($this->pattern == 1) {
+		if ($this->pattern == self::NUM_AND_STR_PATTERN) {
 			$rightOperand = $this->num2str($this->rightOperand);
 		}
 

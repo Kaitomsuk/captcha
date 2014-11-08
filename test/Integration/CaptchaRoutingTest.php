@@ -6,7 +6,7 @@ class CaptchaRoutingTest extends WebTestCase
 {
 	function createApplication()
 	{
-		require __DIR__ . '/../../index.php';
+		require __DIR__ . '/../../routing.php';
 		return $app;
 	}
 

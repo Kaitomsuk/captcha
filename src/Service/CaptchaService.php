@@ -18,4 +18,10 @@ class CaptchaService
 		$pattern = $this->randomizer->getRandomPattern();
 		return new Captcha( $pattern, $leftOperand, $operator, $rightOperand);
 	}
+
+	function getCaptchaString()
+	{
+		$captcha = $this->getCaptcha();
+		return $captcha->getCaptchaString();
+	}
 }

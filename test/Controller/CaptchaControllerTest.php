@@ -6,15 +6,15 @@ class CaptchaControllerTest extends PHPUnit_Framework_TestCase
 {
 	function testGetCaptcha()
 	{
-		$captchaController = new CaptchaController;
+		$stubCaptchaService = $this->getMock('Captcha\Service\CaptchaService');
+		$stubCaptchaService
+			->expects($this->once())
+			->method('getCaptcha')
+            ->willReturn('1 + One');
+
+		$captchaController = new CaptchaController($stubCaptchaService);
 		$captcha = $captchaController->getCaptcha();
 
-		// $stubCaptchaService = $this->getMock('Captcha\Service\CaptchaService');
-		// $stubCaptchaService
-		// 	->expects($this->once())
-		// 	->method('getCaptcha')
-  //           ->willReturn(1);
-
-		// $this->assertEquals('1 + One', $captcha);
+		$this->assertEquals('1 + One', $captcha);
 	}
 }

@@ -6,11 +6,15 @@ use Captcha\Model\Randomizer;
 
 class CaptchaController
 {
+	function __construct($captchaService)
+	{
+		$this->service = $captchaService;
+	}
+
 	function getCaptcha()
 	{
-		$captchaService = new CaptchaService;
-		$captchaService->setRandomizer( new Randomizer );
-		$captcha = $captchaService->getCaptcha();
+		$this->service->setRandomizer( new Randomizer );
+		$captcha = $this->service->getCaptcha();
 		
 		return $captcha->getLeftOperand() . ' ' . $captcha->getOperator() . ' ' . $captcha->getRightOperand();
 	}

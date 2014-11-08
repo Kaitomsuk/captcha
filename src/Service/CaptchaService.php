@@ -2,9 +2,15 @@
 
 namespace Captcha\Service;
 use Captcha\Model\Captcha as Captcha;
+use Captcha\Model\Randomizer as Randomizer;
 
 class CaptchaService
 {
+	function __construct()
+	{
+		$this->randomizer = new Randomizer();
+	}
+
 	function setRandomizer( $randomizer )
 	{
 		$this->randomizer = $randomizer;

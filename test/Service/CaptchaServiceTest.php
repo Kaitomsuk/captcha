@@ -31,5 +31,10 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("2 + Two" , $captcha);
 	}
 
-
+	public function testGetCaptchaStringWithoutSetRandomizerShouldNotBeNull()
+	{
+		$captcha = $this->captchaService->getCaptcha();
+		
+		$this->assertNotNull($captcha);
+	}
 }

@@ -1,7 +1,6 @@
 <?php
 
 require_once 'vendor/autoload.php';
-//use Captcha\Controller\CaptchaController;
 use Captcha\Service\CaptchaService;
 use Captcha\Model\Randomizer;
 
@@ -17,5 +16,4 @@ $app->get('/api/captcha', function() {
 	return $captchaService->getCaptcha()->getLeftOperand() . ' ' . $captchaService->getCaptcha()->getOperator() . ' ' . $captchaService->getCaptcha()->getRightOperand();
 });
 
-// $app["debug"] = true;
 $app->run();

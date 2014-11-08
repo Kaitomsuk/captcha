@@ -1,36 +1,20 @@
 <?php
 
-use Silex\WebTestCase;
+use Captcha\Controller\CaptchaController;
 
-class CaptchaControllerTest extends WebTestCase
+class CaptchaControllerTest extends PHPUnit_Framework_TestCase
 {
-	function createApplication()
+	function testGetCaptcha()
 	{
-		require __DIR__ . '/../../index.php';
-		return $app;
-	}
+		$captchaController = new CaptchaController;
+		$captcha = $captchaController->getCaptcha();
 
-	function testInitialRequest()
-	{
-		$client = $this->createClient();
-    	$crawler = $client->request('GET', '/');
+		// $stubCaptchaService = $this->getMock('Captcha\Service\CaptchaService');
+		// $stubCaptchaService
+		// 	->expects($this->once())
+		// 	->method('getCaptcha')
+  //           ->willReturn(1);
 
-    	$this->assertTrue($client->getResponse()->isOk());
-	}
-
-	function testGetApiCaptchaShouldBeOk()
-	{
-		$client = $this->createClient();
-    	$crawler = $client->request('GET', '/api/captcha');
-
-    	$this->assertTrue($client->getResponse()->isOk());
-	}
-
-	function testGetCaptchaShouldBeCaptchaString()
-	{
-		$client = $this->createClient();
-    	$crawler = $client->request('GET', '/api/captcha');
-    	$regex = "/^([1-9]|(One|Two|Three|Four|Five|Six|Seven|Eight|Nine)) [+\-*] ([1-9]|(One|Two|Three|Four|Five|Six|Seven|Eight|Nine))$/";
-    	$this->assertRegExp($regex, $client->getResponse()->getContent());
+		// $this->assertEquals('1 + One', $captcha);
 	}
 }

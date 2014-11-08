@@ -44,4 +44,9 @@ class Captcha {
 	public function getOperator(){
 		return $this->arr_operator[ $this->operator ];
 	}
+
+	public function getCaptchaString()
+	{
+		return $this->getLeftOperand() . ' ' . $this->getOperator() . ' ' . $this->getRightOperand();
+	}
 }

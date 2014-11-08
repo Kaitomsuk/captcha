@@ -1,15 +1,16 @@
 <?php
 
 require_once 'vendor/autoload.php';
-use Captcha\Service\CaptchaService as CaptchaService;
-use Captcha\Model\Randomizer as Randomizer;
+// use Captcha\Controller\CaptchaController;
 
 $app = new Silex\Application();
-
-$app->get('/api/captcha', function() {
-	$captchaService = new CaptchaService();
-	$captchaService->setRandomizer( new Randomizer() );
-	return $captchaService->getCaptcha();
+$app->get('/', function() {
+	return 'Hello World!';
 });
 
+$app->get('/api/captcha', function() {
+	return 'Hello World!';
+});
+
+// $app["debug"] = true;
 $app->run();

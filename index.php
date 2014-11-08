@@ -5,13 +5,20 @@ use Captcha\Controller\CaptchaController;
 use Captcha\Service\CaptchaService;
 
 $app = new Silex\Application();
-$app->get('/', function() {
-	return 'Hello World!';
+$app->register(new Silex\Provider\ServiceControllerServiceProvider());
+
+$app['captcha.service'] = $app->share(function() {
+    return new CaptchaService;
 });
 
-$app->get('/api/captcha', function() {
-	$captchaController = new CaptchaController(new CaptchaService);
-	return $captchaController->getCaptcha();
+$app['captcha.controller'] = $app->share(function() use ($app) {
+    return new CaptchaController($app['captcha.service']);
+});
+
+$app->get('/api/captcha', "captcha.controller:getCaptcha");
+
+$app->get('/', function() {
+	return 'Hello World!';
 });
 
 $app->run();

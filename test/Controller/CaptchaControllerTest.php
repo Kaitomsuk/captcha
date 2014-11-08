@@ -25,4 +25,12 @@ class CaptchaControllerTest extends WebTestCase
 
     	$this->assertTrue($client->getResponse()->isOk());
 	}
+
+	function testGetCaptchaShouldBeCaptchaString()
+	{
+		$client = $this->createClient();
+    	$crawler = $client->request('GET', '/api/captcha');
+    	$regex = "/([1-9]|(One|Two|Three|Four|Five|Six|Seven|Eight|Nine)) [+\-*] ([1-9]|(One|Two|Three|Four|Five|Six|Seven|Eight|Nine))/";
+    	$this->assertRegExp($regex, $client->getResponse()->getContent());
+	}
 }

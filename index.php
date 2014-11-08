@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-// use Captcha\Controller\CaptchaController;
+//use Captcha\Controller\CaptchaController;
 
 $app = new Silex\Application();
 $app->get('/', function() {
@@ -9,7 +9,7 @@ $app->get('/', function() {
 });
 
 $app->get('/api/captcha', function() {
-	return 'Hello World!';
+	return 'One - 1';
 });
 
 // $app["debug"] = true;

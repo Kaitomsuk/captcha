@@ -1,23 +1,7 @@
 <?php
-require "CaptchaTest.php";
-require "RandomizerTestCase.php";
 
-class CaptchaService
-{
-	function setRandomizer( $randomizer )
-	{
-		$this->randomizer = $randomizer;
-	}
-
-	function getCaptcha()
-	{
-		$leftOperand = $this->randomizer->getRandomOperand();
-		$rightOperand = $this->randomizer->getRandomOperand();
-		$operator = $this->randomizer->getRandomOperator();
-		$pattern = $this->randomizer->getRandomPattern();
-		return new Captcha( $pattern, $leftOperand, $operator, $rightOperand);
-	}
-}
+use Captcha\Service\CaptchaService as CaptchaService;
+// use Captcha\Model\Randomizer as Randomizer;
 
 class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +12,7 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 
 	public function testGetCaptchaLeftOperandShouldBe1()
 	{		
-		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer = $this->getMock('Captcha\Model\Randomizer');
 		$stubRandomizer
 			->expects($this->once())
 			->method('getRandomPattern')
@@ -46,7 +30,7 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 
 	public function testGetCaptchaRightOperandShouldBeTwo()
 	{
-		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer = $this->getMock('Captcha\Model\Randomizer');
 		$stubRandomizer
 			->expects($this->once())
 			->method('getRandomPattern')
@@ -64,7 +48,7 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 
 	public function testGetCaptchaOperaterShouldBePlus()
 	{
-		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer = $this->getMock('Captcha\Model\Randomizer');
 		$stubRandomizer
 			->expects($this->once())
 			->method('getRandomOperator')
@@ -78,7 +62,7 @@ class CaptchaServiceTest extends PHPUnit_Framework_TestCase
 
 	public function testGetCaptchaPattern1LeftOperandShouldBe1()
 	{
-		$stubRandomizer = $this->getMock('Randomizer');
+		$stubRandomizer = $this->getMock('Captcha\Model\Randomizer');
 		$stubRandomizer
 			->expects($this->once())
 			->method('getRandomPattern')

@@ -1,21 +1,6 @@
 <?php
-class Randomizer
-{	
-	function getRandomPattern()
-	{
-		return rand( 1, 2 );
-	}
 
-	function getRandomOperand()
-	{
-		return rand( 1, 9 );
-	}
-
-	function getRandomOperator()
-	{
-		return rand( 1, 3 );
-	}
-}
+use Captcha\Model\Randomizer as Randomizer;
 
 class RandomizerTestCase extends PHPUnit_Framework_TestCase 
 {

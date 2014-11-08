@@ -16,12 +16,7 @@ class CaptchaService
 		$rightOperand = $this->randomizer->getRandomOperand();
 		$operator = $this->randomizer->getRandomOperator();
 		$pattern = $this->randomizer->getRandomPattern();
-		return new Captcha( $pattern, $leftOperand, $operator, $rightOperand);
-	}
-
-	function getCaptchaString()
-	{
-		$captcha = $this->getCaptcha();
+		$captcha = new Captcha( $pattern, $leftOperand, $operator, $rightOperand);
 		return $captcha->getCaptchaString();
 	}
 }
